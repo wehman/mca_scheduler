@@ -2,30 +2,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
   <title>jQuery UI Sortable - Default functionality</title>
-  <style>
-  #sortable { display: flex; flex-direction: column; list-style-type: none; margin: 0; padding: 0; width: 60%; }
-  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 30px; line-height: 30px; }
-  #sortable li span { margin-left: -1.3em; line-height: 18px}
-  .column {
-  display: table-cell;
-  vertical-align: middle;
-  height: 75px;
-  width: 500px;
-  float: left;
-  border: 2px solid #e0e0e0;
-  background-color: #fff;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-bottom: 10px;
-  -webkit-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  text-align: center;
-  cursor: move;
-}
-  </style>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
@@ -36,7 +14,9 @@
   </script>
 </head>
 <body>
-<form action="r" method="post">
+<form action="list" method="post">
+  Name: <input type="text" name="name" required>
+  ID: <input type="text" name="student_id" required>
 <ul id="sortable">
   <li class="column">
   Item 1 <input type="hidden" name="classes[class1]" value="class1">
