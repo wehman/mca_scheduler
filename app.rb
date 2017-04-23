@@ -52,5 +52,5 @@ end
 
 get "/list" do
 
-	"oi"
+	erb :selection
 end
