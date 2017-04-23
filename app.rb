@@ -14,7 +14,7 @@ post "/list" do
 	name = params[:name]
 	id = params[:student_id]
 
-	db_params = {  # AWS db
+	db_params = {
 	host: ENV['host'],
 	port:ENV['port'],
 	dbname:ENV['dbname'],
@@ -24,20 +24,25 @@ post "/list" do
 
 	conn = PG::Connection.new(db_params)
 
-	# determine current max index (id) in details table
-	max_id = conn.exec("select max(id) from students")[0]
+	conn.exec(
+            "insert into students (name, student_id)
+            values
+            (
+            '#{name}',
+            '#{id}'
+            )"
+            )
 
-	# prepare SQL statement to insert common individual form fields into common table
-	conn.prepare('q_statement',
-				"insert into students
-				(name, student_id, classes)
-				values($1, $2, $3)")  # bind parameters
+	classes.each do |key, value|
 
-	# execute prepared SQL statement
-	conn.exec_prepared('q_statement', [name, id, classes])
+    conn.prepare('q_statement',"insert into students (classes)
+                              values ($1)
+                              where student_id='#{id}'")
 
-	# deallocate prepared statement variable (avoid error "prepared statement already exists")
-	conn.exec("deallocate q_statement")
+		conn.exec_prepared('q_statement', ["#{key}=>#{value}"])
+	end
 
-	"#{classes} , #{name}, #{id}"
+  conn.exec("deallocate q_statement")
+
+  "#{classes}"
 end
