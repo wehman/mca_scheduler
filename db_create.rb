@@ -26,43 +26,19 @@ begin
   #     }
   conn = PG::Connection.new(db_params)
 
+  conn.exec "create extension hstore"
+
   # drop common table if it exists
   conn.exec "drop table if exists students"
 
   # create the common table
-  conn.exec "create table students (
-             id int primary key,
+  conn.exec "create table students 
+             (
+             id serial primary key,
              name varchar(60),
-             student_id varchar(60))"
-
-  # drop common table if it exists
-  conn.exec "drop table if exists classes"
-
-  # create the common table
-  conn.exec "create table classes (
-             id int primary key,
-             name varchar(60),
-             size int,
-             description varchar(80))"
-
-  # drop common table if it exists
-  conn.exec "drop table if exists student_choices"
-
-  # create the common table
-  conn.exec "create table student_choices (
-             id int primary key,
              student_id varchar(60),
-             class_id varchar(60),
-             rank int)"
-
-  # drop common table if it exists
-  conn.exec "drop table if exists class_rosters"
-
-  # create the common table
-  conn.exec "create table class_rosters (
-             id int primary key,
-             student_id varchar(60),
-             class_id varchar(60))"
+             classes hstore
+             )"
 
 rescue PG::Error => e
 
