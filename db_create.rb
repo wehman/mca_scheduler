@@ -4,14 +4,6 @@ load "./local_env.rb" if File.exists?("./local_env.rb")
 
 begin
 
-  # connect to the database
-  # db_params = {  # AWS db
-  #       host: ENV['host'],
-  #       port:ENV['port'],
-  #       dbname:ENV['dbname'],
-  #       user:ENV['dbuser'],
-  #       password:ENV['dbpassword']
-  #     }
   db_params = {  # AWS db
         host: ENV['host'],
         port:ENV['port'],
@@ -19,14 +11,10 @@ begin
         user:ENV['dbuser'],
         password:ENV['dbpassword']
       }
-  # db_params = {  # local db
-  #       dbname:ENV['dbname'],
-  #       user:ENV['dbuser'],
-  #       password:ENV['dbpassword']
-  #     }
+
   conn = PG::Connection.new(db_params)
 
-  conn.exec "create extension hstore"
+  # conn.exec "create extension hstore"
 
   # drop common table if it exists
   conn.exec "drop table if exists students"

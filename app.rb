@@ -24,25 +24,24 @@ post "/list" do
 
 	conn = PG::Connection.new(db_params)
 
-	conn.exec(
-            "insert into students (name, student_id)
+  hash = ""
+
+  classes.each do |key, value|
+
+    hash += "#{key}=>#{value},"
+  end
+
+  hash.chop!
+
+  conn.exec(
+            "insert into students (name, student_id, classes)
             values
             (
             '#{name}',
-            '#{id}'
+            '#{id}',
+            '#{hash}'
             )"
             )
-
-	classes.each do |key, value|
-
-    conn.prepare('q_statement',"insert into students (classes)
-                              values ($1)
-                              where student_id='#{id}'")
-
-		conn.exec_prepared('q_statement', ["#{key}=>#{value}"])
-	end
-
-  conn.exec("deallocate q_statement")
 
   "#{classes}"
 end
