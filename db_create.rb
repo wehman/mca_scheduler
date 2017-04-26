@@ -14,7 +14,7 @@ begin
 
   conn = PG::Connection.new(db_params)
 
-  # conn.exec "create extension hstore"
+  conn.exec "create extension if not exists hstore"
 
   # drop common table if it exists
   conn.exec "drop table if exists students"

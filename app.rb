@@ -11,8 +11,10 @@ end
 post "/list" do
 
 	classes = params[:classes]
-	name = params[:name]
-	id = params[:student_id]
+
+	firstname = params[:first]
+  middlei = params[:middle]
+  lastname = params[:last]
 
 	db_params = {
 	host: ENV['host'],
@@ -34,14 +36,18 @@ post "/list" do
   hash.chop!
 
   conn.exec(
-            "insert into students (name, student_id, classes)
+            "insert into students (firstname, middleinitial, lastname, classes)
             values
             (
-            '#{name}',
-            '#{id}',
+            '#{firstname}',
+            '#{middlei}',
+            '#{lastname}'
             '#{hash}'
             )"
             )
 
-  "#{classes}"
+  namesb = conn.exec("select classes from students")
+
+  "#{namesb[0]}"
 end
+

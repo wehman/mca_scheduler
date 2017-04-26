@@ -14,33 +14,34 @@
   </script>
 </head>
 <body>
-<form action="list" method="post">
-  Name: <input type="text" name="name" required>
-  ID: <input type="text" name="student_id" required>
-<ul id="sortable">
-  <li class="column">
-  Item 1 <input type="hidden" name="classes[1]" value="class1">
-  </li>
-  <li class="column">
-  Item 2 <input type="hidden" name="classes[2]" value="class2">
-  </li>
-  <li class="column">
-  Item 3 <input type="hidden" name="classes[3]" value="class3">
-  </li>
-  <li class="column">
-  Item 4 <input type="hidden" name="classes[4]" value="class4">
-  </li>
-  <li class="column">
-  Item 5 <input type="hidden" name="classes[5]" value="class5">
-  </li>
-  <li class="column">
-  Item 6 <input type="hidden" name="classes[6]" value="class6">
-  </li>
-  <li class="column">
-  Item 7 <input type="hidden" name="classes[7]" value="class7">
-  </li>
-</ul>
-<input type="submit">
-</form>
+  <form action="list" method="post">
+    Name: <input type="text" name="first" required>
+    Middle Initial: <input type="text" name="middle" required>
+    Last Name: <input type="text" name="last" required>
+  <ul id="sortable">
+    <li class="column">
+      Item 1 <input type="hidden" name="classes[1]" value="class1">
+    </li>
+    <li class="column">
+      Item 2 <input type="hidden" name="classes[2]" value="class2">
+    </li>
+    <li class="column">
+      Item 3 <input type="hidden" name="classes[3]" value="class3">
+    </li>
+    <li class="column">
+      Item 4 <input type="hidden" name="classes[4]" value="class4">
+    </li>
+    <li class="column">
+      Item 5 <input type="hidden" name="classes[5]" value="class5">
+    </li>
+    <li class="column">
+      Item 6 <input type="hidden" name="classes[6]" value="class6">
+    </li>
+    <li class="column">
+      Item 7 <input type="hidden" name="classes[7]" value="class7">
+    </li>
+  </ul>
+  <input type="submit">
+  </form>
 </body>
 </html>
