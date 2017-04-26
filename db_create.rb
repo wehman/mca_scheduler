@@ -23,9 +23,11 @@ begin
   conn.exec "create table students 
              (
              id serial primary key,
-             name varchar(60),
+             firstname varchar(60),
+             middleinitial varchar(1),
+             lastname varchar(60),
              student_id varchar(60),
-             classes hstore
+             classes json
              )"
 
 rescue PG::Error => e

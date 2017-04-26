@@ -1,13 +1,35 @@
 require 'sinatra'
 require 'pg'
+require 'json'
 
 load "./local_env.rb" if File.exists?("./local_env.rb")
 
 get "/" do 
 
-	erb :selection
+	erb :st
 end
 
+post "/decide" do
+
+  choice = params[:choice]
+
+  if choice == "student"
+    redirect to "/student"
+  else
+    redirect to "/teacher"
+  end
+end
+
+get "/student" do
+
+  erb :selection
+end
+
+get "/teacher" do 
+
+  "oi"
+end
+ 
 post "/list" do
 
 	classes = params[:classes]
@@ -26,28 +48,41 @@ post "/list" do
 
 	conn = PG::Connection.new(db_params)
 
-  hash = ""
+  hash = JSON.generate(classes)
 
-  classes.each do |key, value|
-
-    hash += "#{key}=>#{value},"
-  end
-
-  hash.chop!
-
-  conn.exec(
-            "insert into students (firstname, middleinitial, lastname, classes)
-            values
-            (
-            '#{firstname}',
-            '#{middlei}',
-            '#{lastname}'
-            '#{hash}'
-            )"
-            )
+  # conn.exec(
+  #           "insert into students (firstname, middleinitial, lastname, classes)
+  #           values
+  #           (
+  #           '#{firstname}',
+  #           '#{middlei}',
+  #           '#{lastname}',
+  #           '#{hash}'
+  #           )"
+  #           )
 
   namesb = conn.exec("select classes from students")
 
-  "#{namesb[0]}"
+  classq = namesb[0]["classes"]
+
+  class3 = JSON.parse(classq)
+
+  class4 = Hash.new
+
+  index = 1
+
+  class3.each do |key, value|
+
+    index = index.to_s
+
+    class4[index] = value
+
+    index = index.to_i
+
+    index += 1
+  end
+
+
+  "#{class4}"
 end
 
