@@ -14,10 +14,14 @@
   </script>
 </head>
 <body>
+  <center>
   <form action="list" method="post">
     Name: <input type="text" name="first" required>
-    Middle Initial: <input type="text" name="middle" required>
+    Middle Initial: <input type="text" name="middle" maxlength="1" size="1" style="text-align: center">
     Last Name: <input type="text" name="last" required>
+  </form>
+  </center>
+  <center>
   <ul id="sortable">
     <li class="column">
       Item 1 <input type="hidden" name="classes[1]" value="class1">
@@ -41,6 +45,7 @@
       Item 7 <input type="hidden" name="classes[7]" value="class7">
     </li>
   </ul>
+  </center>
   <input type="submit">
   </form>
 </body>
