@@ -83,6 +83,6 @@ post "/list" do
   end
 
 
-  "#{class4}"
-end
+  "#{classes}, #{firstname}"
+end 
 

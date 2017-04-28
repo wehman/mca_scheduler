@@ -12,6 +12,7 @@ $(document).ready(function() {
   $("#nsub").hide();
   $("#picker").hide();
   $("#moving").click(function(event){
+    event.preventDefault();
     $(".logo").hide();
     $("#left").css("marginRight", "0").animate({marginRight: "+=500"}, 1000);
     $("#right1").hide();
@@ -47,7 +48,7 @@ $(document).ready(function() {
         First: <input type="text" name="first" maxlength="10" size="10" required>
         Middle: <input type="text" name="middle" maxlength="1" size="1" style="text-align: center">
         Last: <input type="text" name="last" required><br>
-        <button class="selection-submit" id="show-schedule">Show me the class list</button>
+        <button type="button" class="selection-submit" id="show-schedule">Show me the class list</button>
       </div>
       <div id="picker">
         <div class="text-content">
