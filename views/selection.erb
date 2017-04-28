@@ -14,39 +14,43 @@
   </script>
 </head>
 <body>
-  <center>
-  <form action="list" method="post">
-    Name: <input type="text" name="first" required>
-    Middle Initial: <input type="text" name="middle" maxlength="1" size="1" style="text-align: center">
-    Last Name: <input type="text" name="last" required>
-  </form>
-  </center>
-  <center>
-  <ul id="sortable">
-    <li class="column">
-      Item 1 <input type="hidden" name="classes[1]" value="class1">
-    </li>
-    <li class="column">
-      Item 2 <input type="hidden" name="classes[2]" value="class2">
-    </li>
-    <li class="column">
-      Item 3 <input type="hidden" name="classes[3]" value="class3">
-    </li>
-    <li class="column">
-      Item 4 <input type="hidden" name="classes[4]" value="class4">
-    </li>
-    <li class="column">
-      Item 5 <input type="hidden" name="classes[5]" value="class5">
-    </li>
-    <li class="column">
-      Item 6 <input type="hidden" name="classes[6]" value="class6">
-    </li>
-    <li class="column">
-      Item 7 <input type="hidden" name="classes[7]" value="class7">
-    </li>
-  </ul>
-  </center>
-  <input type="submit">
-  </form>
+  <div class="selection-parent">
+    <center>
+      <form action="list" method="post" >
+        <div class="name-content">
+          Name: <input type="text" name="first" required>
+          Middle Initial: <input type="text" name="middle" maxlength="1" size="1" style="text-align: center">
+          Last Name: <input type="text" name="last" required>
+        </div>
+        <div class="text-content">
+          <p>Drag and drop your desired class choice from Most Wanted to Least Wanted:</p>
+          </div>
+        <ul id="sortable">
+          <li class="column">
+            History <input type="hidden" name="classes[1]" value="class1">
+          </li>
+          <li class="column">
+            Geography <input type="hidden" name="classes[2]" value="class2">
+          </li>
+          <li class="column">
+            Programming <input type="hidden" name="classes[3]" value="class3">
+          </li>
+          <li class="column">
+            Calculus <input type="hidden" name="classes[4]" value="class4">
+          </li>
+          <li class="column">
+            Super Long Class Name <input type="hidden" name="classes[5]" value="class5">
+          </li>
+          <li class="column">
+            Shop<input type="hidden" name="classes[6]" value="class6">
+          </li>
+          <li class="column">
+            Physics <input type="hidden" name="classes[7]" value="class7">
+          </li>
+        </ul>
+        <button class="selection-submit">submit</button>
+      </form>
+    </center>
+  </div>
 </body>
 </html>

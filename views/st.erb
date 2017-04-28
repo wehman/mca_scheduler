@@ -1,15 +1,39 @@
 <link rel="stylesheet" href="style.css">
 <script src="https://use.fontawesome.com/eb0a505a04.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$(document).ready(function() {
+   $(function(){
+      $("#sortable").sortable();
+      $("#sortable").disableSelection();
+    });
+  $("#right2").hide();
+  $("#nsub").hide();
+  $("#picker").hide();
+  $("#moving").click(function(event){
+    $(".logo").hide();
+    $("#left").css("marginRight", "0").animate({marginRight: "+=500"}, 1000);
+    $("#right1").hide();
+    $("#right2").show();
+    $("#moving").hide();  
+    $("#nsub").show();
+  });
+  $("#show-schedule").click(function(event){
+    $("#name-schedule").hide();
+    $("#picker").show();
+  }); 
+
+});
+</script> 
 <section class="split-pane">
   <div class="left"><i class="fa fa-pencil-square-o fa-5x" aria-hidden="true" style="color:white"></i>
     <div class="text-content">
       <p class="big">Students</p>
     </div>
-    <form action="student" type="post">
-    <button>Select your classes</button>
-    </form>
+    <button id="moving">Select your classes</button>
   </div>
-  <div class="right"><i class="fa fa-map-o fa-5x" aria-hidden="true" style="color:white"></i>
+  <div class="right" id="right1"><i class="fa fa-map-o fa-5x" aria-hidden="true" style="color:white"></i>
     <div class="text-content">
       <p class="big">Teachers</p>
     </div>
@@ -17,5 +41,45 @@
     <button>View Schedules</button>
     </form>
   </div>
-  <div class="logo"> <img src="middle.png"/></div>
+  <div class="left" id="right2">
+    <form action="list" method="post" >
+      <div class="name-content" id="name-schedule">
+        First: <input type="text" name="first" maxlength="10" size="10" required>
+        Middle: <input type="text" name="middle" maxlength="1" size="1" style="text-align: center">
+        Last: <input type="text" name="last" required><br>
+        <button class="selection-submit" id="show-schedule">Show me the class list</button>
+      </div>
+      <div id="picker">
+        <div class="text-content">
+          <p>Drag and drop your desired class choice from</p>
+          <p>Most Wanted to Least Wanted:</p>
+        </div>
+        <ul id="sortable">
+          <li class="column">
+            History <input type="hidden" name="classes[1]" value="class1">
+          </li>
+          <li class="column">
+            Geography <input type="hidden" name="classes[2]" value="class2">
+          </li>
+          <li class="column">
+            Programming <input type="hidden" name="classes[3]" value="class3">
+          </li>
+          <li class="column">
+            Calculus <input type="hidden" name="classes[4]" value="class4">
+          </li>
+          <li class="column">
+            Super Long Class Name <input type="hidden" name="classes[5]" value="class5">
+          </li>
+          <li class="column">
+            Shop<input type="hidden" name="classes[6]" value="class6">
+          </li>
+          <li class="column">
+            Physics <input type="hidden" name="classes[7]" value="class7">
+          </li>
+          <button class="selection-submit">submit</button>
+        </ul>
+      </div>
+    </form>
+  </div>
+  <div class="logo" id="star"> <img src="middle.png"/></div>
 </section>
