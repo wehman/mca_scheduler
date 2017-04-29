@@ -4,31 +4,62 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 $(document).ready(function() {
+
    $(function(){
+
       $("#sortable").sortable();
       $("#sortable").disableSelection();
     });
+
+  $("#cm").hide();
   $("#right2").hide();
   $("#nsub").hide();
   $("#picker").hide();
+
   $("#moving").click(function(event){
+
     event.preventDefault();
     $(".logo").hide();
-    $("#left").css("marginRight", "0").animate({marginRight: "+=500"}, 1000);
     $("#right1").hide();
     $("#right2").show();
     $("#moving").hide();  
     $("#nsub").show();
   });
+
   $("#show-schedule").click(function(event){
+
     $("#name-schedule").hide();
     $("#picker").show();
   }); 
 
+  $("#teacherp").click(function(event){
+
+    $("#left").hide();
+    $(".logo").hide();
+    $("#cm").show();
+    $("#teacherp").hide();
+  });
+
+  index = 0;
+
+  $("#new-item").click(function(event){
+    index += 1;
+    $("#new-classes").append('Class ' + index + ':<input maxlength="20" size="20" type="text" name=classes[' + index + ']> Limit: <input maxlength="2" size="2" type="text" name=limit[' + index + ']><br>');
+  });
 });
-</script> 
+</script>
 <section class="split-pane">
-  <div class="left"><i class="fa fa-pencil-square-o fa-5x" aria-hidden="true" style="color:white"></i>
+  <div class="right" id="cm">
+    <div class="text-content">
+      <p>Entter the name of the class and it's student limit.</p>
+      <p>Click 'New Class' to add a new class.</p>
+      <form id="new-classes">
+      </form>
+    </div>
+    <button type="button" id="new-item">New Class</button><br>
+    <button>Submit</button>
+  </div>
+  <div class="left" id="left"><i class="fa fa-pencil-square-o fa-5x" aria-hidden="true" style="color:white"></i>
     <div class="text-content">
       <p class="big">Students</p>
     </div>
@@ -39,7 +70,7 @@ $(document).ready(function() {
       <p class="big">Teachers</p>
     </div>
     <form action="teacher" type="student">
-    <button>View Schedules</button>
+    <button id="teacherp" type="button">View Schedules</button>
     </form>
   </div>
   <div class="left" id="right2">
