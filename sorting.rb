@@ -36,13 +36,13 @@ def sort(array_of_classes, limit)
 			end
 		end
 
-		puts "Storage 1:#{@storage1}"
-		puts "Storage 2:#{@storage2}"
-		puts "Storage 3:#{@storage3}"
-		puts "Storage 4:#{@storage4}"
-		puts "Storage 5:#{@storage5}"
-		print "\n"
-		print "\n"
+		# puts "Storage 1:#{@storage1}"
+		# puts "Storage 2:#{@storage2}"
+		# puts "Storage 3:#{@storage3}"
+		# puts "Storage 4:#{@storage4}"
+		# puts "Storage 5:#{@storage5}"
+		# print "\n"
+		# print "\n"
 
 		if @storage1.length > limit
 			@storage1 = @storage1.shuffle
@@ -74,21 +74,21 @@ def sort(array_of_classes, limit)
 			@storage5 = @storage5 - @storage5.drop(limit)
 		end
 
-		puts "Storage 1:#{@storage1}"
-		puts "Storage 2:#{@storage2}"
-		puts "Storage 3:#{@storage3}"
-		puts "Storage 4:#{@storage4}"
-		puts "Storage 5:#{@storage5}"
-		puts "left over:#{@left_over_kids}"
-		print "\n"
-		print "\n"
+		# puts "Storage 1:#{@storage1}"
+		# puts "Storage 2:#{@storage2}"
+		# puts "Storage 3:#{@storage3}"
+		# puts "Storage 4:#{@storage4}"
+		# puts "Storage 5:#{@storage5}"
+		# puts "left over:#{@left_over_kids}"
+		# print "\n"
+		# print "\n"
 		
 
 		counter = @left_over_kids.length
 		(counter).times do |x|
 			student = @left_over_kids[0]
-			puts "Student: #{student}"
-			print "\n"
+			# puts "Student: #{student}"
+			# print "\n"
 
 			if (student[0]["2"] == 1) && (@storage1.length < limit)
 				@storage1.push(student[0])
@@ -128,26 +128,29 @@ def sort(array_of_classes, limit)
 		(counter).times do |x|
 			student = @left_over_kids[0]
 
-			if (student[0]["3"] == 1) && (@storage1.length < limit)
-				@storage1.push(student[0])
-				@left_over_kids[0].delete(student[0])
-				@left_over_kids = @left_over_kids
-			elsif (student[0]["3"] == 2) && (@storage2.length < limit)
-				@storage2.push(student[0])
-				@left_over_kids[0].delete(student[0])
-				@left_over_kids = @left_over_kids
-			elsif (student[0]["3"] == 3) && (@storage3.length < limit)
-				@storage3.push(student[0])
-				@left_over_kids[0].delete(student[0])
-				@left_over_kids = @left_over_kids
-			elsif (student[0]["3"] == 4) && (@storage4.length < limit)
-				@storage4.push(student[0])
-				@left_over_kids[0].delete(student[0])
-				@left_over_kids = @left_over_kids
-			elsif (student[0]["3"] == 5) && (@storage5.length < limit)
-				@storage5.push(student[0])
-				@left_over_kids[0].delete(student[0])
-				@left_over_kids = @left_over_kids
+			while student.length != 0
+
+				if (student[0]["3"] == 1) && (@storage1.length < limit)
+					@storage1.push(student[0])
+					@left_over_kids[0].delete(student[0])
+					@left_over_kids = @left_over_kids
+				elsif (student[0]["3"] == 2) && (@storage2.length < limit)
+					@storage2.push(student[0])
+					@left_over_kids[0].delete(student[0])
+					@left_over_kids = @left_over_kids
+				elsif (student[0]["3"] == 3) && (@storage3.length < limit)
+					@storage3.push(student[0])
+					@left_over_kids[0].delete(student[0])
+					@left_over_kids = @left_over_kids
+				elsif (student[0]["3"] == 4) && (@storage4.length < limit)
+					@storage4.push(student[0])
+					@left_over_kids[0].delete(student[0])
+					@left_over_kids = @left_over_kids
+				elsif (student[0]["3"] == 5) && (@storage5.length < limit)
+					@storage5.push(student[0])
+					@left_over_kids[0].delete(student[0])
+					@left_over_kids = @left_over_kids
+				end
 			end
 		end
 
@@ -155,26 +158,29 @@ def sort(array_of_classes, limit)
 		(counter).times do |x|
 			student = @left_over_kids[0]
 
-			if student[0]["4"] == 1 && @storage1.length < limit
-				@storage1.push(student[0])
-				@left_over_kids[0].delete(student[0])
-				@left_over_kids = @left_over_kids
-			elsif student[0]["4"] == 2 && @storage2.length < limit
-				@storage2.push(student[0])
-				@left_over_kids[0].delete(student[0])
-				@left_over_kids = @left_over_kids
-			elsif student[0]["4"] == 3 && @storage3.length < limit
-				@storage3.push(student[0])
-				@left_over_kids[0].delete(student[0])
-				@left_over_kids = @left_over_kids
-			elsif student[0]["4"] == 4 && @storage4.length < limit
-				@storage4.push(student[0])
-				@left_over_kids[0].delete(student[0])
-				@left_over_kids = @left_over_kids
-			elsif student[0]["4"] == 5 && @storage5.length < limit
-				@storage5.push(student[0])
-				@left_over_kids[0].delete(student[0])
-				@left_over_kids = @left_over_kids
+			while student.length != 0
+
+				if student[0]["4"] == 1 && @storage1.length < limit
+					@storage1.push(student[0])
+					@left_over_kids[0].delete(student[0])
+					@left_over_kids = @left_over_kids
+				elsif student[0]["4"] == 2 && @storage2.length < limit
+					@storage2.push(student[0])
+					@left_over_kids[0].delete(student[0])
+					@left_over_kids = @left_over_kids
+				elsif student[0]["4"] == 3 && @storage3.length < limit
+					@storage3.push(student[0])
+					@left_over_kids[0].delete(student[0])
+					@left_over_kids = @left_over_kids
+				elsif student[0]["4"] == 4 && @storage4.length < limit
+					@storage4.push(student[0])
+					@left_over_kids[0].delete(student[0])
+					@left_over_kids = @left_over_kids
+				elsif student[0]["4"] == 5 && @storage5.length < limit
+					@storage5.push(student[0])
+					@left_over_kids[0].delete(student[0])
+					@left_over_kids = @left_over_kids
+				end
 			end
 		end
 
@@ -182,26 +188,28 @@ def sort(array_of_classes, limit)
 		(counter).times do |x|
 			student = @left_over_kids[0]
 
-			if student[0]["5"] == 1 && @storage1.length < limit
-				@storage1.push(student[0])
-				@left_over_kids[0].delete(student[0])
-				@left_over_kids = @left_over_kids
-			elsif student[0]["5"] == 2 && @storage2.length < limit
-				@storage2.push(student[0])
-				@left_over_kids[0].delete(student[0])
-				@left_over_kids = @left_over_kids
-			elsif student[0]["5"] == 3 && @storage3.length < limit
-				@storage3.push(student[0])
-				@left_over_kids[0].delete(student[0])
-				@left_over_kids = @left_over_kids
-			elsif student[0]["5"] == 4 && @storage4.length < limit
-				@storage4.push(student[0])
-				@left_over_kids[0].delete(student[0])
-				@left_over_kids = @left_over_kids
-			elsif student[0]["5"] == 5 && @storage5.length < limit
-				@storage5.push(student[0])
-				@left_over_kids[0].delete(student[0])
-				@left_over_kids = @left_over_kids
+			while student.length != 0
+				if student[0]["5"] == 1 && @storage1.length < limit
+					@storage1.push(student[0])
+					@left_over_kids[0].delete(student[0])
+					@left_over_kids = @left_over_kids
+				elsif student[0]["5"] == 2 && @storage2.length < limit
+					@storage2.push(student[0])
+					@left_over_kids[0].delete(student[0])
+					@left_over_kids = @left_over_kids
+				elsif student[0]["5"] == 3 && @storage3.length < limit
+					@storage3.push(student[0])
+					@left_over_kids[0].delete(student[0])
+					@left_over_kids = @left_over_kids
+				elsif student[0]["5"] == 4 && @storage4.length < limit
+					@storage4.push(student[0])
+					@left_over_kids[0].delete(student[0])
+					@left_over_kids = @left_over_kids
+				elsif student[0]["5"] == 5 && @storage5.length < limit
+					@storage5.push(student[0])
+					@left_over_kids[0].delete(student[0])
+					@left_over_kids = @left_over_kids
+				end
 			end
 		end
 
