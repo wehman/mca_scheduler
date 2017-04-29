@@ -72,7 +72,8 @@ body {
     position: relative;
   }
 }
-. {
+
+.left {
   background-color: #326293;
   background-size: cover;
   background-position: center;
