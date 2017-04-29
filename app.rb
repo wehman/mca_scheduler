@@ -4,9 +4,16 @@ require 'json'
 
 load "./local_env.rb" if File.exists?("./local_env.rb")
 
+configure do
+
+  Cache::init()
+end
+
 get "/" do 
 
-	erb :st
+  classes_made = Cache::classes_made()
+
+	erb :st, :locals => {classes_made: classes_made}
 end
 
 post "/decide" do
@@ -83,6 +90,10 @@ post "/list" do
   end
 
 
-  "#{class4}"
+  erb :studentconf
 end 
 
+class Cache
+
+  @@classes_made = false
+end

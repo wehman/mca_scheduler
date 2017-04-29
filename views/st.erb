@@ -44,7 +44,11 @@ $(document).ready(function() {
 
   $("#new-item").click(function(event){
     index += 1;
-    $("#new-classes").append('Class ' + index + ':<input maxlength="20" size="20" type="text" name=classes[' + index + ']> Limit: <input maxlength="2" size="2" type="text" name=limit[' + index + ']><br>');
+    $("#new-classes").append('Class ' + index + ':<input maxlength="21" size="21" type="text" name=classes[' + index + ']> Limit: <input maxlength="2" size="2" type="text" name=limit[' + index + ']><br>');
+  });
+
+  $("#class-submut").click(function() {
+    $("#new-classes").submit();
   });
 });
 </script>
@@ -53,11 +57,11 @@ $(document).ready(function() {
     <div class="text-content">
       <p>Entter the name of the class and it's student limit.</p>
       <p>Click 'New Class' to add a new class.</p>
-      <form id="new-classes">
+      <form id="new-classes" action="teacher">
       </form>
     </div>
     <button type="button" id="new-item">New Class</button><br>
-    <button>Submit</button>
+    <button id="class-submut">Submit</button>
   </div>
   <div class="left" id="left"><i class="fa fa-pencil-square-o fa-5x" aria-hidden="true" style="color:white"></i>
     <div class="text-content">
