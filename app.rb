@@ -4,16 +4,16 @@ require 'json'
 
 load "./local_env.rb" if File.exists?("./local_env.rb")
 
-configure do
+# configure do
 
-  Cache::init()
-end
+#   Cache::init()
+# end
 
 get "/" do 
 
-  classes_made = Cache::classes_made()
+  # classes_made = Cache::classes_made()
 
-	erb :st, :locals => {classes_made: classes_made}
+	erb :st
 end
 
 post "/decide" do
@@ -32,9 +32,12 @@ get "/student" do
   erb :selection
 end
 
-get "/teacher" do 
+post "/teacher" do 
 
-  "oi"
+  classes = params[:classes]
+  limits = params[:limit]
+
+  "#{classes}, #{limits}"
 end
  
 post "/list" do
