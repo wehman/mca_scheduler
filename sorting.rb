@@ -7,18 +7,32 @@ student6 = { "1" => 1, "2" => 3, "3" => 5, "4" => 2, "5" => 4 }
 
 classes = [{"classes" => student1},{"classes" => student2}, {"classes" => student3}, {"classes" => student4}, {"classes" => student5}, {"classes" => student6}]
 
-@storage1 = []
-@storage2 = []
-@storage3 = []
-@storage4 = []
-@storage5 = []
+# @storage1 = []
+# @storage2 = []
+# @storage3 = []
+# @storage4 = []
+# @storage5 = []
 
+class Sorting
+
+	def initialize
+
+		@storage1 = []
+		@storage2 = []
+		@storage3 = []
+		@storage4 = []
+		@storage5 = []
+		@left_over_kids = []
+		@combined_returned = []
+
+	end
 
 def sort(array_of_classes, limit)
 
+
 	total_students = array_of_classes.length
 	total_classes = array_of_classes[0]["classes"].length
-	@left_over_kids = []
+	
 
 		total_students.times do |x|
 			roster = array_of_classes[x]
@@ -244,24 +258,36 @@ def sort(array_of_classes, limit)
 
 		@left_over_kids = @left_over_kids.flatten
 
+		@combined_returned = [@storage1, @storage2, @storage3, @storage4, @storage5, @left_over_kids]
+
+		return @combined_returned
+
 end
 
-sort(classes, 1)
+end
 
-	puts "Class 1:#{@storage1}"
+mysorting = Sorting.new
+combined_returned = mysorting.sort(classes, 1)
+combined_returned.each do |data|
+	puts data
 	print "\n"
+end
 
-	puts "Class 2:#{@storage2}"
-	print "\n"
 
-	puts "Class 3:#{@storage3}"
-	print "\n"
+	# puts "Class 1:#{@storage1}"
+	# print "\n"
 
-	puts "Class 4:#{@storage4}"
-	print "\n"
+	# puts "Class 2:#{@storage2}"
+	# print "\n"
 
-	puts "Class 5:#{@storage5}"
-	print "\n"
+	# puts "Class 3:#{@storage3}"
+	# print "\n"
 
-	puts "Left over kids: #{@left_over_kids}"
-	print "\n"
+	# puts "Class 4:#{@storage4}"
+	# print "\n"
+
+	# puts "Class 5:#{@storage5}"
+	# print "\n"
+
+	# puts "Left over kids: #{@left_over_kids}"
+	# print "\n"
