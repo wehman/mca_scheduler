@@ -4,14 +4,8 @@ require 'json'
 
 load "./local_env.rb" if File.exists?("./local_env.rb")
 
-# configure do
-
-#   Cache::init()
-# end
 
 get "/" do 
-
-  # classes_made = Cache::classes_made()
 
 	erb :st
 end
@@ -34,10 +28,43 @@ end
 
 post "/teacher" do 
 
-  classes = params[:classes]
-  limits = params[:limit]
+  class_names = params[:classes].values
+  limits = params[:limit].values
 
-  "#{classes}, #{limits}"
+  classes_final = Hash.new
+
+  #new hash in form of {ClassName => ClassLimit,}
+  class_names.each_with_index do |name, index|
+
+    classes_final["#{name}"] = limits[index]
+  end
+
+  db_params = {
+  host: ENV['host'],
+  port:ENV['port'],
+  dbname:ENV['dbname'],
+  user:ENV['dbuser'],
+  password:ENV['dbpassword']
+  }
+
+  conn = PG::Connection.new(db_params)
+
+  conn.exec "drop table if exists classes"
+
+  conn.exec "create table classes (id serial primary key)"
+
+  class_name_query = classes_final.keys.to_s.delete("[]").downcase #'Class1','Class2','Class3'...
+  class_limit_query = classes_final.values.to_s.delete("[]").gsub("\"", "\'") #'Limit1','Limit2','Limit3'...
+
+  classes_final.each do |key, value|
+
+    conn.exec "alter table classes add column #{key} varchar(60)"
+   
+  end
+
+   conn.exec "insert into classes (#{class_name_query}) values (#{class_limit_query})"
+
+  "#{class_name_query}"
 end
  
 post "/list" do
@@ -95,8 +122,3 @@ post "/list" do
 
   erb :studentconf
 end 
-
-class Cache
-
-  @@classes_made = false
-end
