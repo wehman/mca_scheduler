@@ -25,9 +25,7 @@ begin
              id serial primary key,
              firstname varchar(60),
              middleinitial varchar(1),
-             lastname varchar(60),
-             student_id varchar(60),
-             classes json
+             lastname varchar(60)
              )"
 
 rescue PG::Error => e

@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'pg'
 require 'json'
+require_relative 'sorting.rb'
 
 load "./local_env.rb" if File.exists?("./local_env.rb")
 
@@ -53,16 +54,24 @@ post "/teacher" do
 
   conn.exec "create table classes (id serial primary key)"
 
-  class_name_query = classes_final.keys.to_s.delete("[]").downcase #'Class1','Class2','Class3'...
+  class_name_query = classes_final.keys.to_s.delete("[]").downcase.gsub(" ", "") #'Class1','Class2','Class3'...
+  class_name_query_val = classes_final.keys.to_s.delete("[]").downcase.gsub(" ", "").gsub("\"", "\'") #'Class1','Class2','Class3'...
   class_limit_query = classes_final.values.to_s.delete("[]").gsub("\"", "\'") #'Limit1','Limit2','Limit3'...
 
+
+  index = 1
   classes_final.each do |key, value|
 
+    key = key.gsub(" ", "") if key.include?(" ")
+
     conn.exec "alter table classes add column #{key} varchar(60)"
-   
+    conn.exec "alter table students add column class#{index} varchar(60)"
+
+    index += 1
   end
 
    conn.exec "insert into classes (#{class_name_query}) values (#{class_limit_query})"
+   conn.exec "insert into classes (#{class_name_query}) values (#{class_name_query_val})"
 
   "#{class_name_query}"
 end
@@ -70,10 +79,40 @@ end
 post "/list" do
 
 	classes = params[:classes]
-
-	firstname = params[:first]
+  firstname = params[:first]
   middlei = params[:middle]
   lastname = params[:last]
+
+  class_list = Hash.new
+
+  index = 1
+  classes.each do |key, value|
+
+    class_list["#{index.to_s}"] = value
+    index += 1
+  end
+
+  class_list["firstname"] = firstname
+  class_list["middleinitial"] = middlei
+  class_list["lastname"] = lastname
+
+  class_col_query = ""
+  (class_list.length - 3).times do |n|
+
+    class_col_query += "class#{n + 1}, "
+  end
+  class_col_query.chop!
+  class_col_query.chop!
+
+  class_row_query = ""
+  (class_list.length - 3).times do |n|
+
+    class_row_query += "\'" + (class_list["#{n + 1}"] + "\'" + ", ")
+  end
+  class_row_query.chop!
+  class_row_query.chop!
+  class_row_query.chop!
+  class_row_query[0] = ""
 
 	db_params = {
 	host: ENV['host'],
@@ -88,37 +127,18 @@ post "/list" do
   hash = JSON.generate(classes)
 
   # conn.exec(
-  #           "insert into students (firstname, middleinitial, lastname, classes)
+  #           "insert into students (firstname, middleinitial, lastname, #{class_col_query})
   #           values
   #           (
   #           '#{firstname}',
   #           '#{middlei}',
   #           '#{lastname}',
-  #           '#{hash}'
+  #           '#{class_row_query}'
   #           )"
   #           )
 
-  namesb = conn.exec("select classes from students")
-
-  classq = namesb[0]["classes"]
-
-  class3 = JSON.parse(classq)
-
-  class4 = Hash.new
-
-  index = 1
-
-  class3.each do |key, value|
-
-    index = index.to_s
-
-    class4[index] = value
-
-    index = index.to_i
-
-    index += 1
-  end
-
-
-  erb :studentconf
+  students = conn.exec("select * from students").values
+  limits = conn.exec("select * from classes").values
+  "#{students}, #{limits}"
+  # erb :studentconf
 end 
