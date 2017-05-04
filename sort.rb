@@ -210,8 +210,7 @@ def sort(array_of_students, array_of_limits, array_of_classnames)
 
 
 	if @left_over_kids.length != 0
-		print @left_over_kids
-		print "\n"
+	
 		@left_over_kids.each do |student|
 			if (student[8][-1].to_i == 1) && (@storage1.length < array_of_limits[1].to_i)
 				@storage1.push(student)
@@ -244,9 +243,9 @@ end
 
 # ["1", "Max", "P", "Pokropowicz", nil, nil, nil, nil, nil] -----test for nil values
 
-@arr_students = [["2", "Brain", "T", "Jewis", "class3", "class2", "class4", "class5", "class1"], ["3", "Cole", "F", "Pokropowicz", "class3", "class4", "class5", "class1", "class2"],["2", "Brain", "T", "Jewis", "class1", "class2", "class4", "class5", "class3"],["2", "Brain", "T", "Jewis", "class2", "class3", "class4", "class5", "class1"],["2", "Brain", "T", "Jewis", "class4", "class5", "class3", "class2", "class1"]]
+@arr_students = [["2", "Brain", "T", "Jewis", "class3", "class2", "class4", "class5", "class1"], ["3", "Cole", "F", "Pokropowicz", "class3", "class4", "class5", "class1", "class2"],["2", "Max", "Q", "Pokropowicz", "class1", "class2", "class4", "class5", "class3"],["2", "Coleen", "R", "Krenichen", "class2", "class3", "class4", "class5", "class1"],["2", "Brian", "T", "Lewis", "class4", "class5", "class3", "class2", "class1"],["2", "Gabe", "T", "Newell", "class3", "class5", "class4", "class2", "class1"]]
 
-@arr_limits = ["1", "1", "1", "1", "1", "1"]
+@arr_limits = ["1", "1", "1", "2", "1", "1"]
 
 @arr_clnames = ["2", "math", "physx", "calc", "art", "music"]
 
@@ -260,24 +259,33 @@ mysorting = Sorting.new
 @results = mysorting.sort(@arr_students, @arr_limits, @arr_clnames)
 
 
+counter = 1
+@results.each do |storage|
+	print "#{@arr_clnames[counter]}: "
+	storage.each do |student|
+		print "#{student[1]} #{student[2]} #{student[3]}, "
+	end
+	counter += 1
+	print "\n"
+end
 # print @storage3
 
-print "\n"
-print "\n"
+# print "\n"
+# print "\n"
 
-puts "#{@arr_clnames[1]}: #{@results[0]}"
-print "\n"
+# puts "#{@arr_clnames[1]}: #{@results[0]}"
+# print "\n"
 
-puts "#{@arr_clnames[2]}: #{@results[1]}"
-print "\n"
+# puts "#{@arr_clnames[2]}: #{@results[1]}"
+# print "\n"
 
-puts "#{@arr_clnames[3]}: #{@results[2]}"
-print "\n"
+# puts "#{@arr_clnames[3]}: #{@results[2]}"
+# print "\n"
 
-puts "#{@arr_clnames[4]}: #{@results[3]}"
-print "\n"
+# puts "#{@arr_clnames[4]}: #{@results[3]}"
+# print "\n"
 
-puts "#{@arr_clnames[5]}: #{@results[4]}"
-print "\n"
+# puts "#{@arr_clnames[5]}: #{@results[4]}"
+# print "\n"
 
-puts "Left over Kids: #{@results[5]}"
+# puts "Left over Kids: #{@results[5]}"
