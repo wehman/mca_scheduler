@@ -91,7 +91,7 @@ $(document).ready(function() {
           <p>Most Wanted to Least Wanted:</p>
         </div>
         <ul id="sortable">
-          <li class="column">
+         <!--  <li class="column">
             History <input type="hidden" name="classes[1]" value="class1">
           </li>
           <li class="column">
@@ -111,7 +111,12 @@ $(document).ready(function() {
           </li>
           <li class="column">
             Physics <input type="hidden" name="classes[7]" value="class7">
+          </li> -->
+          <%classes.each_with_index do |classn, index|%>
+          <li class="column">
+          <%=classn.upcase%><input type="hidden" name=<%= "classes[#{index}]"%> value=<%= "#{classn}"%>>
           </li>
+          <%end%>
           <button class="selection-submit">submit</button>
         </ul>
       </div>

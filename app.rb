@@ -1,14 +1,27 @@
 require 'sinatra'
 require 'pg'
 require 'json'
-require_relative 'sorting.rb'
 
 load "./local_env.rb" if File.exists?("./local_env.rb")
 
 
 get "/" do 
 
-	erb :st
+  db_params = {
+  host: ENV['host'],
+  port:ENV['port'],
+  dbname:ENV['dbname'],
+  user:ENV['dbuser'],
+  password:ENV['dbpassword']
+  }
+
+  conn = PG::Connection.new(db_params)
+
+  classes = conn.exec("select * from classes where id='2'").values
+  classes = classes[0]
+  classes = classes[1..(classes.length - 1)]
+
+	erb :st, :locals => {classes: classes}
 end
 
 post "/decide" do
@@ -126,19 +139,18 @@ post "/list" do
 
   hash = JSON.generate(classes)
 
-  # conn.exec(
-  #           "insert into students (firstname, middleinitial, lastname, #{class_col_query})
-  #           values
-  #           (
-  #           '#{firstname}',
-  #           '#{middlei}',
-  #           '#{lastname}',
-  #           '#{class_row_query}'
-  #           )"
-  #           )
+  conn.exec(
+            "insert into students (firstname, middleinitial, lastname, #{class_col_query})
+            values
+            (
+            '#{firstname}',
+            '#{middlei}',
+            '#{lastname}',
+            '#{class_row_query}'
+            )"
+            )
 
   students = conn.exec("select * from students").values
   limits = conn.exec("select * from classes").values
-  "#{students}, #{limits}"
-  # erb :studentconf
+  erb :studentconf
 end 
