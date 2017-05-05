@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'pg'
 require 'json'
+require_relative 'sort.rb'
 
 load "./local_env.rb" if File.exists?("./local_env.rb")
 
@@ -154,3 +155,60 @@ post "/list" do
   limits = conn.exec("select * from classes").values
   erb :studentconf
 end 
+
+post "/schedule" do
+
+  db_params = {
+  host: ENV['host'],
+  port:ENV['port'],
+  dbname:ENV['dbname'],
+  user:ENV['dbuser'],
+  password:ENV['dbpassword']
+  }
+
+  conn = PG::Connection.new(db_params)
+
+  student_arr = conn.exec("select * from students").values
+  limits_arr = conn.exec("select * from classes where id='2'").values
+  classnames_arr = conn.exec("select * from classes where id='1'").values
+
+  # "#{limits_arr}, #{classnames_arr}"
+
+  roster = Sorting.new
+
+  results = roster.fill(student_arr, limits_arr, classnames_arr)
+  results = roster.left_overs(student_arr, limits_arr, classnames_arr)
+  # results = roster.sort(student_arr, limits_arr, classnames_arr)
+
+  "#{results}"
+
+  erb :roster, :locals => {results: results}
+
+  # ["1", "Max", "P", "Pokropowicz", nil, nil, nil, nil, nil] -----test for nil values
+
+  # @arr_students = [["2", "Brain", "T", "Jewis", "class3", "class2", "class4", "class5", "class1"], ["3", "Cole", "F", "Pokropowicz", "class3", "class4", "class5", "class1", "class2"],["2", "Max", "Q", "Pokropowicz", "class1", "class2", "class4", "class5", "class3"],["2", "Coleen", "R", "Krenichen", "class2", "class3", "class4", "class5", "class1"],["2", "Brian", "T", "Lewis", "class4", "class5", "class3", "class2", "class1"],["2", "Gabe", "T", "Newell", "class3", "class5", "class4", "class2", "class1"]]
+
+  # @arr_limits = ["1", "1", "1", "2", "1", "1"]
+
+  # @arr_clnames = ["2", "math", "physx", "calc", "art", "music"]
+
+
+  # mysorting = Sorting.new
+
+  # @results = mysorting.fill(@arr_students, @arr_limits, @arr_clnames)
+
+  # @results = mysorting.left_overs(@arr_students, @arr_limits, @arr_clnames)
+
+  # @results = mysorting.sort(@arr_students, @arr_limits, @arr_clnames)
+
+
+  # counter = 1
+  # @results.each do |storage|
+  #   print "#{@arr_clnames[counter]}: "
+  #   storage.each do |student|
+  #     print "#{student[1]} #{student[2]} #{student[3]}, "
+  #   end
+  #   counter += 1
+  #   print "\n"
+  # end
+end
