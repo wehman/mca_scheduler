@@ -3,20 +3,24 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <body>
-	<div class="right"
-	  <% results.each_with_index do |classes, index| %>
-	    <ul>
-	    <li>
-	    	<%= classnames[index+1]%>
-	    </li>
-	      <% classes.each_with_index do |students, index| %>
-	      <ul>
-	        <li>
-	          <%= "#{students[1]} #{students[2]} #{students[3]}" %>
-	        </li>
-	       </ul>
-	      <%end%>
-	    </ul>
-	  <%end%>
-	</div>
+  <div style="background-color: #DF7029; color: #fff; height: 100vh;">
+    <% results.each_with_index do |classes, index| %>
+      <ul>
+        <li>
+          <% if index == 5%>
+            <%= "LEFT OVER STUDENTS"%>
+          <%else%>
+            <%= classnames[index+1].upcase%>
+          <%end%>
+        </li>
+        <% classes.each_with_index do |students, index| %>
+          <ul>
+            <li>
+              <%= "#{students[1]} #{students[2]} #{students[3]}" %>
+            </li>
+          </ul>
+        <%end%>
+      </ul>
+    <%end%>
+  </div>
 </body>

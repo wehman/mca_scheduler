@@ -164,7 +164,11 @@ post "/schedule" do
   results = roster.left_overs(student_arr, limits_arr, classnames_arr)
   results = roster.sort(student_arr, limits_arr, classnames_arr)
 
-  # "#{results}"
+  # "#{results[2].length}"
+  # results.each do |classes|
 
+  #   print classes
+  #   puts ""
+  # end
   erb :roster, :locals => {results: results, classnames: classnames_arr}
 end

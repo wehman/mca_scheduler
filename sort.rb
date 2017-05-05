@@ -43,28 +43,29 @@ end
 
 def left_overs(array_of_students, array_of_limits, array_of_classnames)
 
-	if @storage1.length > array_of_limits[1].to_i
-		@storage1 = @storage1.shuffle
-		@left_over_kids << @storage1.drop(array_of_limits[1].to_i)
-		@storage1 = @storage1 - @storage1.drop(array_of_limits[1].to_i)
-	elsif @storage2.length > array_of_limits[2].to_i
-		@storage2 = @storage2.shuffle
-		@left_over_kids << @storage2.drop(array_of_limits[2].to_i)
-		@storage2 = @storage2 - @storage2.drop(array_of_limits[2].to_i)
-	elsif @storage3.length > array_of_limits[3].to_i
-		@storage3 = @storage3.shuffle
-		@left_over_kids << @storage3.drop(array_of_limits[3].to_i)
-		@storage3 = @storage3 - @storage3.drop(array_of_limits[3].to_i)
-	elsif @storage4.length > array_of_limits[4].to_i
-		@storage4 = @storage4.shuffle
-		@left_over_kids << @storage4.drop(array_of_limits[4].to_i)
-		@storage4 = @storage4 - @storage4.drop(array_of_limits[4].to_i)
-	elsif @storage5.length > array_of_limits[5].to_i
-		@storage5 = @storage5.shuffle
-		@left_over_kids << @storage5.drop(array_of_limits[5].to_i)
-		@storage5 = @storage5 - @storage5.drop(array_of_limits[5].to_i)
+	(array_of_classnames.length - 1).times do
+		if @storage1.length > array_of_limits[1].to_i
+			@storage1 = @storage1.shuffle
+			@left_over_kids << @storage1.drop(array_of_limits[1].to_i)
+			@storage1 = @storage1 - @storage1.drop(array_of_limits[1].to_i)
+		elsif @storage2.length > array_of_limits[2].to_i
+			@storage2 = @storage2.shuffle
+			@left_over_kids << @storage2.drop(array_of_limits[2].to_i)
+			@storage2 = @storage2 - @storage2.drop(array_of_limits[2].to_i)
+		elsif @storage3.length > array_of_limits[3].to_i
+			@storage3 = @storage3.shuffle
+			@left_over_kids << @storage3.drop(array_of_limits[3].to_i)
+			@storage3 = @storage3 - @storage3.drop(array_of_limits[3].to_i)
+		elsif @storage4.length > array_of_limits[4].to_i
+			@storage4 = @storage4.shuffle
+			@left_over_kids << @storage4.drop(array_of_limits[4].to_i)
+			@storage4 = @storage4 - @storage4.drop(array_of_limits[4].to_i)
+		elsif @storage5.length > array_of_limits[5].to_i
+			@storage5 = @storage5.shuffle
+			@left_over_kids << @storage5.drop(array_of_limits[5].to_i)
+			@storage5 = @storage5 - @storage5.drop(array_of_limits[5].to_i)
+		end
 	end
-
 #----------------trying to refactor using concatonation---------
 	# counter = 1
 
