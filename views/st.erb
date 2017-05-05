@@ -77,7 +77,7 @@ $(document).ready(function() {
     <button id="teacherp" type="button">View Schedules</button>
     </form>
      <form action="schedule" method="post">
-    <button>Test</button>
+    <button>Sort</button>
     </form>
   </div>
   <div class="left" id="right2">
@@ -94,27 +94,6 @@ $(document).ready(function() {
           <p>Most Wanted to Least Wanted:</p>
         </div>
         <ul id="sortable">
-         <!--  <li class="column">
-            History <input type="hidden" name="classes[1]" value="class1">
-          </li>
-          <li class="column">
-            Geography <input type="hidden" name="classes[2]" value="class2">
-          </li>
-          <li class="column">
-            Programming <input type="hidden" name="classes[3]" value="class3">
-          </li>
-          <li class="column">
-            Calculus <input type="hidden" name="classes[4]" value="class4">
-          </li>
-          <li class="column">
-            Super Long Class Name <input type="hidden" name="classes[5]" value="class5">
-          </li>
-          <li class="column">
-            Shop<input type="hidden" name="classes[6]" value="class6">
-          </li>
-          <li class="column">
-            Physics <input type="hidden" name="classes[7]" value="class7">
-          </li> -->
           <%classes.each_with_index do |classn, index|%>
           <li class="column">
           <%=classn.upcase%><input type="hidden" name=<%= "classes[#{index}]"%> value=<%= "#{classn}"%>>

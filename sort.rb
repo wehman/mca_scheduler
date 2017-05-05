@@ -22,16 +22,16 @@ def fill(array_of_students, arrary_of_limits, array_of_classnames)
 
 		if student[4] == nil
 			puts "error"
-		elsif student[4]== "math"
+		elsif student[4] == array_of_classnames[1]
 			@storage1.push(student)
-		elsif student[4] == "art"
+		elsif student[4] == array_of_classnames[2]
 			@storage2.push(student)
-		elsif student[4] == "science"
+		elsif student[4] == array_of_classnames[3]
 			# puts "hello"
 			@storage3.push(student)
-		elsif student[4] == "music"
+		elsif student[4] == array_of_classnames[4]
 			@storage4.push(student)
-		elsif student[4] == "programming"
+		elsif student[4] == array_of_classnames[5]
 			@storage5.push(student)
 		end
 	end
@@ -96,31 +96,31 @@ def sort(array_of_students, array_of_limits, array_of_classnames)
 	if @left_over_kids.length != 0 
 		
 		@left_over_kids.each do |student|
-			if (student[5] == "math") && (@storage1.length < array_of_limits[1].to_i)
+			if (student[5] == array_of_classnames[1]) && (@storage1.length < array_of_limits[1].to_i)
 
 				@storage1.push(student)
 				@left_over_kids.delete(student)
 				@left_over_kids = @left_over_kids
 
-			elsif (student[5] == "art") && (@storage2.length < array_of_limits[2].to_i)
+			elsif (student[5] == array_of_classnames[2]) && (@storage2.length < array_of_limits[2].to_i)
 
 				@storage2.push(student)
 				@left_over_kids.delete(student)
 				@left_over_kids = @left_over_kids
 
-			elsif (student[5] == "science") && (@storage3.length < array_of_limits[3].to_i)
+			elsif (student[5] == array_of_classnames[3]) && (@storage3.length < array_of_limits[3].to_i)
 
 				@storage3.push(student)
 				@left_over_kids.delete(student)
 				@left_over_kids = @left_over_kids
 
-			elsif (student[5] == "music") && (@storage4.length < array_of_limits[4].to_i)
+			elsif (student[5] == array_of_classnames[4]) && (@storage4.length < array_of_limits[4].to_i)
 
 				@storage4.push(student)
 				@left_over_kids.delete(student)
 				@left_over_kids = @left_over_kids
 
-			elsif (student[5] == "programming") && (@storage5.length < array_of_limits[5].to_i)
+			elsif (student[5] == array_of_classnames[5]) && (@storage5.length < array_of_limits[5].to_i)
 
 				@storage5.push(student)
 				@left_over_kids.delete(student)
@@ -134,31 +134,31 @@ def sort(array_of_students, array_of_limits, array_of_classnames)
 		
 
 		@left_over_kids.each do |student|
-			if (student[6]== "math") && (@storage1.length < array_of_limits[1].to_i)
+			if (student[6]== array_of_classnames[1]) && (@storage1.length < array_of_limits[1].to_i)
 
 				@storage1.push(student)
 				@left_over_kids.delete(student)
 				@left_over_kids = @left_over_kids
 
-			elsif (student[6]== "art") && (@storage2.length < array_of_limits[2].to_i)
+			elsif (student[6]== array_of_classnames[2]) && (@storage2.length < array_of_limits[2].to_i)
 
 				@storage2.push(student)
 				@left_over_kids.delete(student)
 				@left_over_kids = @left_over_kids
 
-			elsif (student[6]== "science") && (@storage3.length < array_of_limits[3].to_i)
+			elsif (student[6]== array_of_classnames[3]) && (@storage3.length < array_of_limits[3].to_i)
 
 				@storage3.push(student)
 				@left_over_kids.delete(student)
 				@left_over_kids = @left_over_kids
 
-			elsif (student[6]== "music") && (@storage4.length < array_of_limits[4].to_i)
+			elsif (student[6]== array_of_classnames[4]) && (@storage4.length < array_of_limits[4].to_i)
 
 				@storage4.push(student)
 				@left_over_kids.delete(student)
 				@left_over_kids = @left_over_kids
 
-			elsif (student[6]== "programming") && (@storage5.length < array_of_limits[5].to_i)
+			elsif (student[6]== array_of_classnames[5]) && (@storage5.length < array_of_limits[5].to_i)
 
 				@storage5.push(student)
 				@left_over_kids.delete(student)
@@ -174,31 +174,31 @@ def sort(array_of_students, array_of_limits, array_of_classnames)
 		
 
 		@left_over_kids.each do |student|
-			if (student[7]== "math") && (@storage1.length < array_of_limits[1].to_i)
+			if (student[7]== array_of_classnames[1]) && (@storage1.length < array_of_limits[1].to_i)
 
 				@storage1.push(student)
 				@left_over_kids.delete(student)
 				@left_over_kids = @left_over_kids
 
-			elsif (student[7]== "art") && (@storage2.length < array_of_limits[2].to_i)
+			elsif (student[7]== array_of_classnames[2]) && (@storage2.length < array_of_limits[2].to_i)
 
 				@storage2.push(student)
 				@left_over_kids.delete(student)
 				@left_over_kids = @left_over_kids
 
-			elsif (student[7]== "science") && (@storage3.length < array_of_limits[3].to_i)
+			elsif (student[7]== array_of_classnames[3]) && (@storage3.length < array_of_limits[3].to_i)
 
 				@storage3.push(student)
 				@left_over_kids.delete(student)
 				@left_over_kids = @left_over_kids
 
-			elsif (student[7]== "music") && (@storage4.length < array_of_limits[4].to_i)
+			elsif (student[7]== array_of_classnames[4]) && (@storage4.length < array_of_limits[4].to_i)
 
 				@storage4.push(student)
 				@left_over_kids.delete(student)
 				@left_over_kids = @left_over_kids
 
-			elsif (student[7]== "programming") && (@storage5.length < array_of_limits[5].to_i)
+			elsif (student[7]== array_of_classnames[5]) && (@storage5.length < array_of_limits[5].to_i)
 
 				@storage5.push(student)
 				@left_over_kids.delete(student)
@@ -212,19 +212,19 @@ def sort(array_of_students, array_of_limits, array_of_classnames)
 	if @left_over_kids.length != 0
 	
 		@left_over_kids.each do |student|
-			if (student[8]== "math") && (@storage1.length < array_of_limits[1].to_i)
+			if (student[8]== array_of_classnames[1]) && (@storage1.length < array_of_limits[1].to_i)
 				@storage1.push(student)
 				@left_over_kids = @left_over_kids.delete(student)
-			elsif (student[8]== "art") && (@storage2.length < array_of_limits[2].to_i)
+			elsif (student[8]== array_of_classnames[2]) && (@storage2.length < array_of_limits[2].to_i)
 				@storage2.push(student)
 				@left_over_kids = @left_over_kids.delete(student)
-			elsif (student[8]== "science") && (@storage3.length < array_of_limits[3].to_i)
+			elsif (student[8]== array_of_classnames[3]) && (@storage3.length < array_of_limits[3].to_i)
 				@storage3.push(student)
 				@left_over_kids = @left_over_kids.delete(student)
-			elsif (student[8]== "music") && (@storage4.length < array_of_limits[4].to_i)
+			elsif (student[8]== array_of_classnames[4]) && (@storage4.length < array_of_limits[4].to_i)
 				@storage4.push(student)
 				@left_over_kids = @left_over_kids.delete(student)
-			elsif (student[8]== "programming") && (@storage5.length < array_of_limits[5].to_i)
+			elsif (student[8]== array_of_classnames[5]) && (@storage5.length < array_of_limits[5].to_i)
 				@storage5.push(student)
 				@left_over_kids = @left_over_kids.delete(student)
 			end

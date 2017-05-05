@@ -3,13 +3,20 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <body>
-  <% results.each do |classes| %>
-    <ul>
-      <% classes.each do |students| %>
-        <li>
-          <%= students %>
-        </li>
-      <%end%>
-    </ul>
-  <%end%>
+	<div class="right"
+	  <% results.each_with_index do |classes, index| %>
+	    <ul>
+	    <li>
+	    	<%= classnames[index+1]%>
+	    </li>
+	      <% classes.each_with_index do |students, index| %>
+	      <ul>
+	        <li>
+	          <%= "#{students[1]} #{students[2]} #{students[3]}" %>
+	        </li>
+	       </ul>
+	      <%end%>
+	    </ul>
+	  <%end%>
+	</div>
 </body>

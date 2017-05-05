@@ -25,22 +25,6 @@ get "/" do
 	erb :st, :locals => {classes: classes}
 end
 
-post "/decide" do
-
-  choice = params[:choice]
-
-  if choice == "student"
-    redirect to "/student"
-  else
-    redirect to "/teacher"
-  end
-end
-
-get "/student" do
-
-  erb :selection
-end
-
 post "/teacher" do 
 
   class_names = params[:classes].values
@@ -79,7 +63,7 @@ post "/teacher" do
     key = key.gsub(" ", "") if key.include?(" ")
 
     conn.exec "alter table classes add column #{key} varchar(60)"
-    conn.exec "alter table students add column class#{index} varchar(60)"
+    # conn.exec "alter table students add column class#{index} varchar(60)"
 
     index += 1
   end
@@ -87,7 +71,7 @@ post "/teacher" do
    conn.exec "insert into classes (#{class_name_query}) values (#{class_limit_query})"
    conn.exec "insert into classes (#{class_name_query}) values (#{class_name_query_val})"
 
-  "#{class_name_query}"
+  erb :teacherconf
 end
  
 post "/list" do
@@ -169,8 +153,8 @@ post "/schedule" do
   conn = PG::Connection.new(db_params)
 
   student_arr = conn.exec("select * from students").values
-  limits_arr = conn.exec("select * from classes where id='2'").values
-  classnames_arr = conn.exec("select * from classes where id='1'").values
+  limits_arr = conn.exec("select * from classes where id='1'").values.flatten
+  classnames_arr = conn.exec("select * from classes where id='2'").values.flatten
 
   # "#{limits_arr}, #{classnames_arr}"
 
@@ -178,37 +162,9 @@ post "/schedule" do
 
   results = roster.fill(student_arr, limits_arr, classnames_arr)
   results = roster.left_overs(student_arr, limits_arr, classnames_arr)
-  # results = roster.sort(student_arr, limits_arr, classnames_arr)
+  results = roster.sort(student_arr, limits_arr, classnames_arr)
 
-  "#{results}"
+  # "#{results}"
 
-  erb :roster, :locals => {results: results}
-
-  # ["1", "Max", "P", "Pokropowicz", nil, nil, nil, nil, nil] -----test for nil values
-
-  # @arr_students = [["2", "Brain", "T", "Jewis", "class3", "class2", "class4", "class5", "class1"], ["3", "Cole", "F", "Pokropowicz", "class3", "class4", "class5", "class1", "class2"],["2", "Max", "Q", "Pokropowicz", "class1", "class2", "class4", "class5", "class3"],["2", "Coleen", "R", "Krenichen", "class2", "class3", "class4", "class5", "class1"],["2", "Brian", "T", "Lewis", "class4", "class5", "class3", "class2", "class1"],["2", "Gabe", "T", "Newell", "class3", "class5", "class4", "class2", "class1"]]
-
-  # @arr_limits = ["1", "1", "1", "2", "1", "1"]
-
-  # @arr_clnames = ["2", "math", "physx", "calc", "art", "music"]
-
-
-  # mysorting = Sorting.new
-
-  # @results = mysorting.fill(@arr_students, @arr_limits, @arr_clnames)
-
-  # @results = mysorting.left_overs(@arr_students, @arr_limits, @arr_clnames)
-
-  # @results = mysorting.sort(@arr_students, @arr_limits, @arr_clnames)
-
-
-  # counter = 1
-  # @results.each do |storage|
-  #   print "#{@arr_clnames[counter]}: "
-  #   storage.each do |student|
-  #     print "#{student[1]} #{student[2]} #{student[3]}, "
-  #   end
-  #   counter += 1
-  #   print "\n"
-  # end
+  erb :roster, :locals => {results: results, classnames: classnames_arr}
 end
