@@ -2,8 +2,8 @@
 <script src="https://use.fontawesome.com/eb0a505a04.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<body>
-  <div style="background-color: #DF7029; color: #fff; height: 100vh;">
+<body style="background-color: #DF7029;">
+  <div style="color: #fff; height: 100vh;">
     <% results.each_with_index do |classes, index| %>
       <ul>
         <li>
@@ -18,6 +18,17 @@
             <li>
               <%= "#{students[1]} #{students[2]} #{students[3]}" %>
             </li>
+          <ul>
+            <li>
+              <%= "#{students[4]}"%>
+            </li>
+            <li>
+              <%= "#{students[5]}"%>
+            </li>
+            <li>
+              <%= "#{students[6]}"%>
+            </li>
+          </ul>
           </ul>
         <%end%>
       </ul>
