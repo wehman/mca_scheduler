@@ -13,21 +13,17 @@
             <%= classnames[index+1].upcase%>
           <%end%>
         </li>
-        <% classes.each_with_index do |students, index| %>
+        <% classes.each_with_index do |students, index2| %>
           <ul>
             <li>
               <%= "#{students[1]} #{students[2]} #{students[3]}" %>
             </li>
           <ul>
-            <li>
-              <%= "#{students[4]}"%>
-            </li>
-            <li>
-              <%= "#{students[5]}"%>
-            </li>
-            <li>
-              <%= "#{students[6]}"%>
-            </li>
+            
+              <li> <%= "#{students[4]}"%></li>
+              <li> <%= "#{students[5]}"%></li>
+              <li> <%= "#{students[6]}"%></li>
+           
           </ul>
           </ul>
         <%end%>
