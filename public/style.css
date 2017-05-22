@@ -20,6 +20,20 @@
   line-height: 40px;
 }
 
+.sorted { 
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.sorted-column {
+
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 5px;
+  padding: 25px 25px 25px 25px;
+}
 .column {
 
   display: table-cell;

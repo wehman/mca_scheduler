@@ -2,27 +2,35 @@
 <script src="https://use.fontawesome.com/eb0a505a04.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $( function() {
+    $( "#sort0,#sort1,#sort2,#sort3,#sort4,#sort5").sortable({
+      connectWith: ".sorted-column",
+      toleranceElement: 'div'
+    }).disableSelection();
+  } );
+</script>
 <body style="background-color: #DF7029;">
-  <div style="color: #fff; height: 100vh;">
+  <div class="sorted" style="color: #fff; height: 100vh;">
     <% results.each_with_index do |classes, index| %>
-      <ul>
-        <li>
+      <ul class="sorted-column" id=<%="sort#{index}"%>>
+        <li><div>
           <% if index == 5%>
             <%= "LEFT OVER STUDENTS"%>
           <%else%>
             <%= classnames[index+1].upcase%>
           <%end%>
-        </li>
+        </div></li>
         <% classes.each_with_index do |students, index2| %>
           <ul>
-            <li>
+            <li><div>
               <%= "#{students[1]} #{students[2]} #{students[3]}" %>
-            </li>
+            </div></li>
           <ul>
             
-              <li> <%= "#{students[4]}"%></li>
-              <li> <%= "#{students[5]}"%></li>
-              <li> <%= "#{students[6]}"%></li>
+              <li><div> <%= "#{students[4]}"%></div></li>
+              <li><div> <%= "#{students[5]}"%></div></li>
+              <li> <div><%= "#{students[6]}"%></div></li>
            
           </ul>
           </ul>
